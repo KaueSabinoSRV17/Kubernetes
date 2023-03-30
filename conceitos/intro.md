@@ -44,3 +44,22 @@ Mapeia uma porta da sua máquina para a porta do Pod exposto:
 Executa um comando dentro de um container do Pod
 
 	kubectl exec <nome do pod> -- <comando>
+
+## Escalonando Pods
+
+Se sua aplicação é `Stateless`, você pode escalona-la horizontalmente.
+(mais Pods, não mais poder a um Pod). Isso significa que nenhuma
+espécie de dado ou arquivo deve ser guardado dentro de um Container,
+e sim com algum serviço externo a ele.
+
+Caso seja necessária a permanência de Estado, podemos usar Volumes.
+
+### Replication Controller
+
+Para gerenciar tudo isso, temos no Kubernetes o `Replication Controller`.
+Nele podemos estabelecer um número mínimo de Pods que deverão estar 
+rodando. Caso qualquer Pod seja deletado ou não esteja mais respondendo,
+outro o substitue automaticamente.
+
+**OBS: É possível rodar com apenas 1 réplica, assim garantimos que ao
+menos um Pod está sempre rodando.**
